@@ -3,14 +3,14 @@
 
 *A production-ready, locally deployable, end-to-end medical QA system powered by fine-tuned LLaMA3, GraphRAG, and a complete MLOps pipeline.*
 
-⚡ This is a personal-scale, open-sourced reproduction of my internship project. It demonstrates scalable GenAI system design for domain-specific applications.
-
 ![Python Version](https://img.shields.io/badge/python-3.10-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
+⚡ This is a personal-scale, open-sourced reproduction of my internship project. It demonstrates scalable GenAI system design for domain-specific applications.
+
 ---
-🏦 Overview
+## 🏦 Overview
 
 **MediGraph-QA** is a high-fidelity, domain-specific medical question answering (QA) system. It features a **LoRA-fine-tuned LLaMA3 model**, a **GraphRAG retriever**, and **modular MLOps deployment**. Designed for performance, transparency, and reproducibility, it supports local inference and scalable deployment.
 
