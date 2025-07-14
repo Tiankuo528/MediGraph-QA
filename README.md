@@ -3,6 +3,8 @@
 
 *A production-grade, local deployed, and end-to-end medical question answering system powered by a fine-tuned LLaMA3 model, GraphRAG, and a full MLOps workflow.*
 
+This is a reproducible personal-scale version of my internship project
+
 ![Python Version](https://img.shields.io/badge/python-3.10-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
