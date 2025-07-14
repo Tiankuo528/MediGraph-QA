@@ -58,7 +58,7 @@ Local Development & Validation ----> Packaging, Automation & Production Deployme
 
 🚀 Getting Started: Local Deployment (on A6000 GPU)
 
-# Local Development & Validation)
+# Local Development & Validation
 
 ### 1. Environment Setup
 
