@@ -28,26 +28,28 @@ Online: Inference Pipeline
 [User Query] -> [GraphRAG Retriever] -> [Prompt Assembler] -> [LoRA-Fine-tuned LLaMA3] -> [Answer Output]
 ```
 ```
+ --- Offline: Indexing Pipeline ---
+
 📂 Medical PDFs
     ↓
 📄 Text Chunker  ➝  🔍 Embedding LLM (nomic) ➝  📦 FAISS Vector DB
                                           ↘
                                            🧠 Knowledge Graph
 
- --- 线下构建完成后，进入在线流程 ---
+ --- Online: Inference Pipeline ---
 
 👤 User Query
     ↓
 🔍 FAISS Retriever
     + 🧠 Graph Expander
        ↓
-🧾 Prompt Assembler (LangChain or custom RAG chain)
+🧾 Prompt Assembler (LangChain)
     ↓
-🤖 Fine-tuned LLaMA3 (via vLLM)
+🤖 LoRA-Fine-tuned LLaMA3 (via vLLM)
     ↓
-📤 Answer Output (REST API / Gradio UI)
+📤 Answer Output (Gradio UI)
 
-# DevOps 层（可侧边或底部展示）：
+# DevOps layer：
 ⚙️ FastAPI   🐳 Docker   ☸️ Kubernetes   🔁 GitHub Actions CI/CD   🧪 DeepEval Evaluation
 ```
 
