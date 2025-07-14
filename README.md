@@ -27,6 +27,29 @@ Offline: Indexing Pipeline
 Online: Inference Pipeline
 [User Query] -> [GraphRAG Retriever] -> [Prompt Assembler] -> [LoRA-Fine-tuned LLaMA3] -> [Answer Output]
 ```
+···
+📂 Medical PDFs
+    ↓
+📄 Text Chunker  ➝  🔍 Embedding LLM (nomic) ➝  📦 FAISS Vector DB
+                                          ↘
+                                           🧠 Knowledge Graph
+
+# --- 线下构建完成后，进入在线流程 ---
+
+👤 User Query
+    ↓
+🔍 FAISS Retriever
+    + 🧠 Graph Expander
+       ↓
+🧾 Prompt Assembler (LangChain or custom RAG chain)
+    ↓
+🤖 Fine-tuned LLaMA3 (via vLLM)
+    ↓
+📤 Answer Output (REST API / Gradio UI)
+
+# DevOps 层（可侧边或底部展示）：
+⚙️ FastAPI   🐳 Docker   ☸️ Kubernetes   🔁 GitHub Actions CI/CD   🧪 DeepEval Evaluation
+···
 
 ## ✨ Key Features
 
