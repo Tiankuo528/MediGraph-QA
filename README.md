@@ -56,9 +56,7 @@ Online: Inference Pipeline
 ## Local Development & Validation ----> Packaging, Automation & Production Deployment
 
 
-## 🚀 Getting Started: Local Deployment (on A6000 GPU)
-
-# Local Development & Validation
+## 🚀 Getting Started: Local Deployment & Validation (on A6000 GPU)
 
 ### 1. Environment Setup
 
@@ -215,7 +213,7 @@ Metrics:
 
 
 
-# Packaging, Automation & Production Deployment
+##  Packaging, Automation & Production Deployment
 
 ### 7.  Containerization (Docker)
 
