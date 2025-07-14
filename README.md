@@ -1,17 +1,18 @@
 
 # MediGraph-QA: End-to-end LLMs-based Advanced Medical Question Answering System
 
-*A production-grade, local deployed, and end-to-end medical question answering system powered by a fine-tuned LLaMA3 model, GraphRAG, and a full MLOps workflow.*
+*A production-ready, locally deployable, end-to-end medical QA system powered by fine-tuned LLaMA3, GraphRAG, and a complete MLOps pipeline.*
 
-This is a reproducible personal-scale version of my internship project
+⚡ This is a personal-scale, open-sourced reproduction of my internship project. It demonstrates scalable GenAI system design for domain-specific applications.
 
 ![Python Version](https://img.shields.io/badge/python-3.10-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
 ---
+🏦 Overview
 
-**MediGraph-QA** is an open-source project designed to provide accurate, context-aware answers to complex medical questions. It leverages a LLaMA3-8B model fine-tuned on medical data and enhances its responses using a powerful **Graph-based Retrieval-Augmented Generation (GraphRAG)** pipeline. The entire system is containerized and ready for scalable deployment.
+**MediGraph-QA** is a high-fidelity, domain-specific medical question answering (QA) system. It features a **LoRA-fine-tuned LLaMA3 model**, a **GraphRAG retriever**, and **modular MLOps deployment**. Designed for performance, transparency, and reproducibility, it supports local inference and scalable deployment.
 
 This repository is a demonstration of a full MLOps lifecycle, from data preparation and model fine-tuning to automated evaluation, interactive demonstration, and CI/CD.
 
@@ -21,23 +22,22 @@ The system operates in two main phases: an offline indexing pipeline that builds
 
 ```
 Offline: Indexing Pipeline
-[Medical PDFs] -> [Text Chunker] -> [LLM Embedder] -> [FAISS Vector Store]
--> [Knowledge Graph]
+[Medical PDFs] -> [Text Chunker] -> [LLM Embedder] -> [FAISS Index] -> [Knowledge Graph]
 
 Online: Inference Pipeline
-[User Query] -> [FAISS Retriever] -> [Graph Context Expander] -> [RAG Prompt] -> [Fine-Tuned LLaMA3] -> [Generated Answer]
+[User Query] -> [GraphRAG Retriever] -> [Prompt Assembler] -> [LoRA-Fine-tuned LLaMA3] -> [Answer Output]
 ```
 
 ## ✨ Key Features
 
--   🔬 **Domain-Specific Fine-Tuning**: LLaMA3-8B-Instruct fine-tuned with **LoRA** on a medical QA dataset for domain-specific accuracy and tone.
--   🧠 **GraphRAG Retriever**: Goes beyond simple semantic search. Uses a **FAISS** vector index for initial retrieval, then expands context using a **Knowledge Graph** to find nuanced, interconnected information.
--   🚀 **High-Performance Inference**: Deployed with the **vLLM** inference engine for state-of-the-art throughput and low latency, utilizing features like continuous batching.
--   📊 **Automated RAG Evaluation**: Integrated with **DeepEval** to systematically measure the RAG pipeline's performance on metrics like Faithfulness, Answer Relevancy, and Contextual Precision.
--   🔧 **Robust API Server**: A clean, scalable RESTful API built with **FastAPI** provides a standard interface for the QA service.
--   🖥️ **Interactive Web Demo**: A user-friendly **Gradio** web UI for easy, interactive demonstration of the QA system.
--   📦 **Containerized & Scalable**: Fully containerized with **Docker** for reproducibility and includes **Kubernetes** manifests for scalable, production-grade deployment.
--   ⚙️ **Automated MLOps**: Features a **CI/CD pipeline** using GitHub Actions to automate testing, building, and deployment.
+-   🔬 **Domain-Specific Fine-Tuning**: LoRA + QLoRA applied to LLaMA3-8B for enhanced medical reasoning.
+-   🧠 **GraphRAG Pipeline**: Combines FAISS retrieval with knowledge graph expansion for richer context.
+-   🚀 **Fast Inference via vLLM**: Supports batching and quantized deployment on single-GPU (A6000) systems.
+-   📊 **Automated Evaluation**: Uses DeepEval to score Faithfulness, Relevance, and Contextual Precision.
+-   🖥️ **FastAPI + Gradio**: RESTful API and user-friendly demo UI.
+-   📦 **Containerized & Scalable**: Docker-based for reproducibility and Kubernetes manifests for scalable, production-grade deployment.
+-   ⚙️ **CI/CD Pipeline**: GitHub Actions for build/test/deploy automation.
+
 
 ## 🛠️ Technology Stack
 
@@ -65,15 +65,10 @@ Local Development & Validation ----> Packaging, Automation & Production Deployme
 #### 1. Prerequisites
 Before starting, ensure you have the following installed on your system:
 
-Python: 3.10 or higher.
-
-NVIDIA Drivers and CUDA: Required for vLLM and GPU acceleration.
-
-Docker: For containerization and local testing.
-
+Python 3.10+, Docker, CUDA drivers, Git
 Kubernetes Cluster (Optional): Configured with GPU nodes for production deployment.
 
-Git
+
 
 #### 2. Local Setup and Installation
 
@@ -105,7 +100,7 @@ huggingface-cli download nomic-ai/nomic-embed-text-v1  --local-dir model/nomic-a
 
 
 
-### 2. LLMs Fine-Tuning
+### 2. LoRA Fine-Tuning
 First, we fine-tune the base LLaMA3 model on our medical dataset and merge the weights.
 
 #### Step 1: Prepare dataset in `data/train.json`
@@ -136,7 +131,7 @@ Output: Final, deployment-ready model saved in `model/merged_model/`
 
 
 
-### 3. Build GraphRAG Pipeline
+### 3. Build GraphRAG Index
 Next, we process our source documents (e.g., medical publications in PDF) to create the vector index and knowledge graph for the RAG pipeline.
 
 
@@ -158,8 +153,7 @@ python scripts/rag_chain.py
 ```
 
 
-
-### 4. Launching the Inference API (Local)
+### 4. Launching Inference API 
 
 Now that the environment and models are ready, launch the FastAPI server which uses vLLM and the GraphRAG pipeline for high-throughput inference to answer questions.
 
@@ -181,7 +175,7 @@ curl -X POST "http://localhost:8000/generate" \
 You should receive a detailed, medically relevant response in JSON format generated by the system.
 
 
-### 5. Interactive Demo with Gradio
+### 5. Launch Gradio UI
 To provide a user-friendly interface for demonstrations, this project includes a Gradio web UI. It communicates with the FastAPI backend (which must be running).
 
 Launch the Gradio App
@@ -192,7 +186,7 @@ python app/gradio_ui.py
 Now, open your web browser and navigate to ```http://127.0.0.1:7860``` to interact with the medical QA system.
 
 
-### 6.  Evaluating System with DeepEval
+### 6.  Evaluate with DeepEval
 To ensure the reliability and accuracy of our RAG pipeline, we use DeepEval to run a comprehensive evaluation suite. This tests the model's ability to generate faithful, relevant, and contextually grounded answers.
 
 Prepare Evaluation Dataset
@@ -219,7 +213,6 @@ Metrics:
 - Contextual Precision: 0.85
 -------------------------------------------------------------------------
 ```
-
 
 
 
@@ -267,7 +260,7 @@ Git Push -> Run Tests -> Build Docker Image -> Push to Registry
 └──────────────────┘   └───────────────────────┘   └────────────────────────┘
                                                      (Pushes to Docker Hub)
 ```
-#### 1. Configure the Workflow⚙️
+#### 1. Configure the Workflow
 
 Modify Image Name: In the ```ci-cd.yml``` file, locate the line specifying the Docker tags:
 ```YAML
@@ -333,7 +326,7 @@ kubectl get service
 ```
 You should see a pod with a name like ```vllm-falcon-7b-deployment-... ```with a status of``` Running```.
 
-3. Test the Service:
+Test the Service:
 To access the service from your local machine, use port-forward. Open a new terminal and run:
 
 ```bash
@@ -361,43 +354,42 @@ ou have now successfully deployed the LLM on Kubernetes. The HPA will automatica
 ## 💡 Example Q&A
 
 **User Instruction:**
-> “Why there is a higher risk of re-fracture after a previous bone fracture？”
+> “Why is there a higher risk of re-fracture after a bone break?”
 
 **Generated Response:**
-> Factors that contribute to a higher risk of re-fracture after a previous bone fracture include untreated osteoporosis, weakened bone structure, and the bone not having fully recovered its weight-bearing capacity after healing.
+> "Contributing factors include untreated osteoporosis, incomplete healing, and reduced bone strength post-fracture."
 
 ---
 
 ## 🙋 FAQ
 
-**Q: Can I run this on a single A6000?**  
+**Q: Can this run on a single A6000?**  
 ✅ Yes — you can fine-tune with LoRA + 4-bit, and run vLLM inference in quantized mode.
 
-**Q: Can this be extended to multi-turn dialog?**  
+**Q: Can it support multi-turn dialogue?**  
 🧩 Yes — chain-of-thought and history memory modules are modular and pluggable.
 
 ---
 
 ## 📎 Credits
 
-- [Meta AI](https://ai.meta.com/research/llama3/) — LLaMA3-70B
-- [vLLM Project](https://github.com/vllm-project/vllm)
+- [Meta LLaMA3](https://ai.meta.com/research/llama3/) 
+- [vLLM](https://github.com/vllm-project/vllm)
 - [LangChain](https://www.langchain.com/)
-- [PEFT by HuggingFace](https://github.com/huggingface/peft)
-- [CD/CI] (https://www.xugj520.cn/archives/deploy-llm-app-cicd-guide.html)
+- [PEFT](https://github.com/huggingface/peft)
+- [DeepEval](https://github.com/confident-ai/deepeval)
 ---
 
 ## 🔐 Disclaimer
 
-This system is intended for research and educational use only. It does not constitute medical advice. Consult licensed professionals for any clinical decisions.
-
+For research/educational use only. Not intended for clinical decisions.
 ---
 
 ## 📬 Contact
 
 **Author**: Tiankuo Chu  
-**GitHub**: [github.com/Tiankuo528](https://github.com/Tiankuo528)  
-**Email**: *[chutk@udel.edu]*
+**GitHub**: [@Tiankuo528](https://github.com/Tiankuo528)  
+**Email**: [chutk@udel.edu]
 
 <!-- #    watch -n 1 nvidia-smi --> 
 
