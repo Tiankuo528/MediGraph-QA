@@ -65,8 +65,7 @@ Local Development & Validation ----> Packaging, Automation & Production Deployme
 #### 1. Prerequisites
 Before starting, ensure you have the following installed on your system:
 
-Python 3.10+, Docker, CUDA drivers, Git
-Kubernetes Cluster (Optional): Configured with GPU nodes for production deployment.
+Python 3.10+, Docker, CUDA drivers, Git， Kubernetes Cluster 
 
 
 
