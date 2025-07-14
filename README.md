@@ -53,10 +53,10 @@ Online: Inference Pipeline
 | **CI/CD** | GitHub Actions                            |
 
 
-Local Development & Validation ----> Packaging, Automation & Production Deployment
+## Local Development & Validation ----> Packaging, Automation & Production Deployment
 
 
-🚀 Getting Started: Local Deployment (on A6000 GPU)
+## 🚀 Getting Started: Local Deployment (on A6000 GPU)
 
 # Local Development & Validation
 
