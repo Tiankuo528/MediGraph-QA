@@ -21,13 +21,6 @@ This repository is a demonstration of a full MLOps lifecycle, from data preparat
 The system operates in two main phases: an offline indexing pipeline that builds the knowledge base, and an online inference pipeline that answers user questions.
 
 ```
-Offline: Indexing Pipeline
-[Medical PDFs] -> [Text Chunker] -> [LLM Embedder] -> [FAISS Index] -> [Knowledge Graph]
-
-Online: Inference Pipeline
-[User Query] -> [GraphRAG Retriever] -> [Prompt Assembler] -> [LoRA-Fine-tuned LLaMA3] -> [Answer Output]
-```
-```
  --- Offline: Indexing Pipeline ---
 
 📂 Medical PDFs
