@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: medigraph-qa-service
+spec:
+  type: LoadBalancer # Or NodePort/ClusterIP depending on your environment
+  selector:
+    app: medigraph-qa
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+    
+     
+# Kubernetes service placeholder
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: vllm-falcon-7b-service
+# spec:
+#   selector:
+#     app: vllm-falcon-7b # Must match the 'app' label in the Deployment
+#   ports:
+#     - protocol: TCP
+#       port: 80 # The port the service will be available on
+#       targetPort: 8000 # The port the container is listening on
+#   type: ClusterIP # Exposes the service only within the cluster

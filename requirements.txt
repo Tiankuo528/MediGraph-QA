@@ -1,0 +1,14 @@
+torch
+transformers
+datasets
+peft
+bitsandbytes
+vllm
+fastapi
+
+langchain 
+langchain-community
+langchain_huggingface
+pypdf
+sentence-transformers
+faiss-cpu

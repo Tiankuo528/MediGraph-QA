@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medigraph-qa-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: medigraph-qa
+  template:
+    metadata:
+      labels:
+        app: medigraph-qa
+    spec:
+      containers:
+      - name: medigraph-qa-container
+        image: yourusername/medical-qa:v1 # Your Docker image
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            [nvidia.com/gpu](https://nvidia.com/gpu): 1 # Request 1 GPU
+            
+            
+            
+            # # Kubernetes deployment placeholder
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: vllm-falcon-7b-deployment
+# spec:
+#   replicas: 1 # Start with one instance
+#   selector:
+#     matchLabels:
+#       app: vllm-falcon-7b
+#   template:
+#     metadata:
+#       labels:
+#         app: vllm-falcon-7b
+#     spec:
+#       containers:
+#       - name: vllm-falcon-7b
+#         image: vllm/vllm-openai:latest # Your built docker image
+#         ports:
+#         - containerPort: 8000
+#         # CRITICAL: Request 1 GPU for this container
+#         resources:
+#           limits:
+#             nvidia.com/gpu: 1
+#         # Command arguments to start the vLLM server
+#         args:
+#           - "--model"
+#           - "tiiuae/falcon-7b" # Specify the model to serve
+#           - "--tensor-parallel-size"
+#           - "1" # Set to the number of GPUs per replica

@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: vllm-falcon-7b-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: vllm-falcon-7b-deployment # Target the deployment created above
+  minReplicas: 1
+  maxReplicas: 4 # Maximum number of instances to scale up to
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70 # Scale up when CPU usage exceeds 70%

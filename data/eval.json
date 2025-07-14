@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What are the primary symptoms of type 2 diabetes?",
+    "retrieval_context": [
+      "Type 2 diabetes is a chronic condition that affects the way the body processes blood sugar (glucose). The primary symptoms often develop slowly over several years and can be subtle. They include increased thirst, frequent urination, and unexplained weight loss. Other common signs are persistent hunger, fatigue, blurred vision, slow-healing sores, and frequent infections, such as gum or skin infections and vaginal infections."
+    ],
+    "expected_answer": "The main symptoms of type 2 diabetes include increased thirst, frequent urination, and unexplained weight loss. Patients may also experience constant hunger, fatigue, blurred vision, and sores that heal slowly."
+  },
+  {
+    "question": "What is the recommended first-line treatment for osteoporosis?",
+    "retrieval_context": [
+      "Osteoporosis is a bone disease that occurs when the body loses too much bone, makes too little bone, or both. The most widely prescribed medications for osteoporosis are bisphosphonates. They are considered the first-line treatment. Common bisphosphonates include Alendronate (Fosamax), Risedronate (Actonel), and Ibandronate (Boniva). These drugs work by slowing down the rate at which bone is broken down in the body, which helps maintain bone density and reduce the risk of fractures."
+    ],
+    "expected_answer": "The recommended first-line treatment for osteoporosis is a class of drugs called bisphosphonates, such as Alendronate. These medications help maintain bone density by slowing down bone loss, thereby reducing fracture risk."
+  },
+  {
+    "question": "How does an X-ray help identify bone metastasis?",
+    "retrieval_context": [
+      "X-rays are a common imaging technique used to detect bone metastases, which are cancerous tumors that have spread to the bone from another part of the body. On an X-ray image, bone metastases can appear as either 'lytic' or 'blastic' lesions. Lytic lesions are areas where the bone has been destroyed, appearing as dark, hole-like spots. Blastic lesions are areas where new, abnormal bone has formed, appearing as dense, white, or sclerotic spots. Sometimes, a mix of both types can be seen."
+    ],
+    "expected_answer": "An X-ray can identify bone metastasis by showing characteristic lesions on the bone. These can be lytic lesions, which appear as dark, hole-like spots indicating bone destruction, or blastic lesions, which are dense white spots indicating abnormal new bone formation."
+  }
+]
+
+ 
+
